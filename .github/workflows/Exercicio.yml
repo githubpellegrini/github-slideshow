@@ -40,4 +40,4 @@ jobs:
     
     steps:
       - name: Ultimo passo
-        run: echo job4
+        run: curl github.com
