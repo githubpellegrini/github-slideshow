@@ -27,7 +27,10 @@ jobs:
   job3:
     name: Terceiro Job
     runs-on: macos-latest
-    needs: [job1, job2]
+    
+    steps:
+      - name: Passo 1
+        run: env | sort
   
   
   job4:
