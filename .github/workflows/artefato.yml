@@ -1,0 +1,38 @@
+# Este fluxo de trabalho fará uma instalação limpa das dependências do node, construirá o código-fonte e executará testes em diferentes versões do node
+# Para mais informações acesse: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: artefato
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+env:
+  WORKFLOW_VAR: 'Testando Variavel de Workflow'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 12
+      JOB_VAR: 'Criando minha variavel de escopo do JOB'
+      
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+    
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        name: aplicativo-mobile-do-William
+        path: .
+        if-no-files-found: error
+        retention-days: 3
